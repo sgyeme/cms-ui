@@ -8,7 +8,8 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+   "types": ["node"],
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -18,9 +19,13 @@
         "name": "next"
       }
     ],
+    "baseUrl": "src",  // Set the baseUrl to "src"
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["*"],             // Maps @/ to the root of src/
+      "@core/*": ["core/*"],     // Maps @core/ to src/core/
+      "@features/*": ["features/*"], // Maps @features/ to src/features/
+      "@shared/*": ["shared/*"]  // Maps @shared/ to src/shared/
+    },
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
