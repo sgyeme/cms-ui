@@ -8,6 +8,9 @@ export const login = async (username: string, password: string):Promise<JwtRespo
   try {
     // Send POST request to login endpoint
     const res = await axiosInstance.post<JwtResponse>('/api/v1/auth/login', { username, password });
+    localStorage.setItem('jwt_response', JSON.stringify(res.data));
+    console.log(res.data); // or auth.username, etc.  
+
     return res.data; // Return response data
   } catch (error: unknown) {
     // Error handling: check if error is AxiosError and throw specific message
