@@ -3,11 +3,13 @@ import { DeductionType } from "../models/deduction-type-model";
 import { AxiosError } from "axios";  // Import AxiosError
 
 const API = '/api/v1/deduction-types';
-
 // Create a new deduction type
-export const createDeductionType = async (deductionType: DeductionType) => {
+
+export const createDeductionType = async (
+  deductionType: DeductionType
+): Promise<DeductionType> => {
   try {
-    const response = await axiosInstance.post(API, deductionType); // POST to create
+    const response = await axiosInstance.post<DeductionType>(API, deductionType); // ✅ Typed response
     return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
@@ -19,9 +21,9 @@ export const createDeductionType = async (deductionType: DeductionType) => {
 };
 
 // Update an existing deduction type
-export const updateDeductionType = async (deductionType: DeductionType) => {
+export const updateDeductionType = async (deductionType: DeductionType) : Promise<DeductionType> =>{
   try {
-    const response = await axiosInstance.put(API, deductionType); // PUT to update
+    const response = await axiosInstance.put<DeductionType>(API, deductionType); // PUT to update
     return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
@@ -44,11 +46,10 @@ export const deleteDeductionType = async (id: string) => {
     }
   }
 };
-
 // Get a deduction type by ID
-export const getDeductionTypeById = async (id: string) => {
+export const getDeductionTypeById = async (id: string): Promise<DeductionType> => {
   try {
-    const response = await axiosInstance.get(`${API}/${id}`); // GET by ID
+    const response = await axiosInstance.get<DeductionType>(`${API}/${id}`);
     return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
@@ -60,10 +61,12 @@ export const getDeductionTypeById = async (id: string) => {
 };
 
 // Get all deduction types
-export const getAllDeductionTypes = async (includeDeleted = false) => {
+export const getAllDeductionTypes = async (
+  includeDeleted = false
+): Promise<DeductionType[]> => {
   try {
-    const response = await axiosInstance.get('', {
-      params: { includeDeleted }, // GET all with optional query
+    const response = await axiosInstance.get<DeductionType[]>(API, {
+      params: { includeDeleted },
     });
     return response.data;
   } catch (error: unknown) {
