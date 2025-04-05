@@ -1,0 +1,1303 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Agent Commission Management Service",
+        "description": "API for Commission Service",
+        "version": "v1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:9002",
+            "description": "Generated server url"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Deduction Types",
+            "description": "APIs for managing deduction types"
+        },
+        {
+            "name": "Authentication",
+            "description": "Endpoints for user authentication and JWT generation"
+        },
+        {
+            "name": "Commission Controller",
+            "description": "Manage agent commissions"
+        },
+        {
+            "name": "TaxRate Service",
+            "description": "Operations related to tax rates"
+        },
+        {
+            "name": "Deductions",
+            "description": "API for managing employee deductions"
+        }
+    ],
+    "paths": {
+        "/api/v1/tax-rates": {
+            "get": {
+                "tags": [
+                    "TaxRate Service"
+                ],
+                "summary": "Get all tax rates",
+                "description": "Retrieve a list of all tax rates",
+                "operationId": "getAll",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TaxRateDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "TaxRate Service"
+                ],
+                "summary": "Update an existing tax rate",
+                "description": "Modify an existing tax rate entity",
+                "operationId": "update",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TaxRateDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaxRateDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "TaxRate Service"
+                ],
+                "summary": "Create a new tax rate",
+                "description": "Persist a new tax rate entity",
+                "operationId": "save",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TaxRateDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaxRateDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/deductions": {
+            "put": {
+                "tags": [
+                    "Deductions"
+                ],
+                "summary": "Update an existing deduction",
+                "description": "Updates an existing deduction record.",
+                "operationId": "update_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeductionDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeductionDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Deductions"
+                ],
+                "summary": "Create a new deduction",
+                "description": "Creates a new deduction record for an employee.",
+                "operationId": "create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeductionDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeductionDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/deduction-types": {
+            "get": {
+                "tags": [
+                    "Deduction Types"
+                ],
+                "summary": "Get all deduction types",
+                "description": "Retrieve all deduction types, optionally including deleted ones",
+                "operationId": "getAll_1",
+                "parameters": [
+                    {
+                        "name": "includeDeleted",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DeductionTypeDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Deduction Types"
+                ],
+                "summary": "Update an existing deduction type",
+                "operationId": "update_2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeductionTypeDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeductionTypeDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Deduction Types"
+                ],
+                "summary": "Create a new deduction type",
+                "operationId": "create_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeductionTypeDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeductionTypeDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/commissions/process-payment": {
+            "post": {
+                "tags": [
+                    "Commission Controller"
+                ],
+                "summary": "Process a commission payment",
+                "description": "Marks a commission as paid or failed",
+                "operationId": "processCommission",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommissionHistoryHeaderDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Commission processed successfully",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommissionHistoryHeaderDto"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input data",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommissionHistoryHeaderDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Commission not found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommissionHistoryHeaderDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User Login",
+                "description": "Authenticates user and generates a JWT token.",
+                "operationId": "login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JwtRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JwtResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tax-rates/{agent_type}/{tax_version}/details": {
+            "get": {
+                "tags": [
+                    "TaxRate Service"
+                ],
+                "summary": "Find tax rate by agent type and version",
+                "description": "Retrieve the full tax rate details based on agent type and tax version",
+                "operationId": "findById",
+                "parameters": [
+                    {
+                        "name": "agent_type",
+                        "in": "path",
+                        "description": "Type of agent (e.g., INDIVIDUAL, BROKER)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tax_version",
+                        "in": "path",
+                        "description": "The version of the tax rule to delete (YYYY-MM)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaxRateDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/premiums": {
+            "get": {
+                "tags": [
+                    "premium-controller"
+                ],
+                "operationId": "fetchCommissionDetails",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CommissionDetail"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/deductions/agent/{agentId}": {
+            "get": {
+                "tags": [
+                    "Deductions"
+                ],
+                "summary": "Get deductions for an agent",
+                "description": "Fetch all deductions for a given agent.",
+                "operationId": "getByAgentId",
+                "parameters": [
+                    {
+                        "name": "agentId",
+                        "in": "path",
+                        "description": "Agent ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "example": "AG12345"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DeductionDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/deductions/active/{agentId}": {
+            "get": {
+                "tags": [
+                    "Deductions"
+                ],
+                "summary": "Get active deductions",
+                "description": "Retrieves active deductions for an agent in a given payroll period.",
+                "operationId": "getActiveDeductions",
+                "parameters": [
+                    {
+                        "name": "agentId",
+                        "in": "path",
+                        "description": "Agent ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "example": "AG12345"
+                    },
+                    {
+                        "name": "period",
+                        "in": "query",
+                        "description": "Payroll period (Year-Month)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "2024-03"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DeductionDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/deduction-types/{id}": {
+            "get": {
+                "tags": [
+                    "Deduction Types"
+                ],
+                "summary": "Get a deduction type by ID",
+                "operationId": "getById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeductionTypeDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Deduction Types"
+                ],
+                "summary": "Delete a deduction type by ID",
+                "operationId": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/v1/commissions": {
+            "get": {
+                "tags": [
+                    "Commission Controller"
+                ],
+                "summary": "Get all pending commissions",
+                "description": "Retrieves a list of pending commissions",
+                "operationId": "getCommissions",
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved commissions",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CommissionHistoryHeaderDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/commissions/{headerId}/summary": {
+            "get": {
+                "tags": [
+                    "Commission Controller"
+                ],
+                "summary": "Get Commission Summary",
+                "description": "Returns summary of the commission for a given header ID",
+                "operationId": "getSummary",
+                "parameters": [
+                    {
+                        "name": "headerId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommissionHistoryHeaderDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/commissions/{headerId}/entries": {
+            "get": {
+                "tags": [
+                    "Commission Controller"
+                ],
+                "summary": "Get Commission Entries",
+                "description": "Returns all commission entries for a given header ID",
+                "operationId": "getEntries",
+                "parameters": [
+                    {
+                        "name": "headerId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CommissionHistoryDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/commissions/{headerId}/deductions": {
+            "get": {
+                "tags": [
+                    "Commission Controller"
+                ],
+                "summary": "Get Deductions",
+                "description": "Returns all deduction entries for a given header ID",
+                "operationId": "getDeductions",
+                "parameters": [
+                    {
+                        "name": "headerId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DeductionHistoryDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/agents": {
+            "get": {
+                "tags": [
+                    "agent-controller"
+                ],
+                "operationId": "getAllAgents",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AgentDetail"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/agents/{agentId}": {
+            "get": {
+                "tags": [
+                    "agent-controller"
+                ],
+                "operationId": "getAgentById",
+                "parameters": [
+                    {
+                        "name": "agentId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AgentDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tax-rates/{agent_type}/{tax_version}": {
+            "delete": {
+                "tags": [
+                    "TaxRate Service"
+                ],
+                "summary": "Delete a tax rate",
+                "description": "Remove a tax rate based on agent type and tax version",
+                "operationId": "delete_1",
+                "parameters": [
+                    {
+                        "name": "agent_type",
+                        "in": "path",
+                        "description": "Type of agent (e.g., INDIVIDUAL, BROKER)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tax_version",
+                        "in": "path",
+                        "description": "The version of the tax rule to delete (YYYY-MM)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/v1/deductions/{id}": {
+            "delete": {
+                "tags": [
+                    "Deductions"
+                ],
+                "summary": "Delete a deduction",
+                "description": "Deletes a deduction record by its ID.",
+                "operationId": "delete_2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Deduction ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1001
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompleteResponseVoid"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "TaxRateDto": {
+                "type": "object",
+                "description": "Represents a tax rate associated with an agent type and tax version.",
+                "properties": {
+                    "agentType": {
+                        "type": "string",
+                        "description": "The type of agent (e.g., SALES_AGENT, BROKER).",
+                        "enum": [
+                            "INDIVIDUAL",
+                            "BROKER"
+                        ],
+                        "example": "SALES_AGENT"
+                    },
+                    "taxVersion": {
+                        "type": "string",
+                        "description": "The tax version (YearMonth) when the tax rate applies.",
+                        "example": "2023-04"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A short description of the tax rate.",
+                        "example": "Standard Tax Rate"
+                    },
+                    "rate": {
+                        "type": "number",
+                        "description": "The tax rate as a percentage.",
+                        "example": 15.5,
+                        "maximum": 100,
+                        "minimum": 0
+                    }
+                },
+                "required": [
+                    "agentType",
+                    "rate",
+                    "taxVersion"
+                ]
+            },
+            "DeductionDto": {
+                "type": "object",
+                "description": "Represents a deduction entry for an agent.",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "Unique identifier of the deduction",
+                        "example": 1001
+                    },
+                    "agentId": {
+                        "type": "string",
+                        "description": "Reference to the agent",
+                        "example": "AG12345",
+                        "minLength": 1
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/EntityRefString",
+                        "description": "Reference to the deduction type",
+                        "example": "LOAN"
+                    },
+                    "value": {
+                        "type": "number",
+                        "description": "Deduction amount",
+                        "example": 150.75,
+                        "minimum": 0.00
+                    },
+                    "mode": {
+                        "type": "string",
+                        "description": "Mode of deduction",
+                        "enum": [
+                            "ABSOLUTE",
+                            "PERCENTAGE"
+                        ],
+                        "example": "FIXED or PERCENTAGE"
+                    },
+                    "begin": {
+                        "type": "string",
+                        "description": "Start period of deduction (Year and Month)",
+                        "example": "2024-01"
+                    },
+                    "end": {
+                        "type": "string",
+                        "description": "Optional end period of deduction (Year and Month)",
+                        "example": "2025-12"
+                    },
+                    "monthsDuration": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Number of months the deduction applies",
+                        "example": 12,
+                        "minimum": 1
+                    }
+                },
+                "required": [
+                    "begin",
+                    "mode",
+                    "type",
+                    "value"
+                ]
+            },
+            "EntityRefString": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "DeductionTypeDto": {
+                "type": "object",
+                "description": "Represents a type of deduction (e.g., Tax, Pension, Insurance).",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Unique identifier for the deduction type",
+                        "example": "TAX001",
+                        "minLength": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the deduction type",
+                        "example": "Income Tax",
+                        "minLength": 1
+                    }
+                },
+                "required": [
+                    "id"
+                ]
+            },
+            "CommissionHistoryHeaderDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "period": {
+                        "type": "string",
+                        "example": "2025-03"
+                    },
+                    "agentId": {
+                        "type": "string"
+                    },
+                    "commissionCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalCommissionEarned": {
+                        "type": "number"
+                    },
+                    "totalTax": {
+                        "type": "number"
+                    },
+                    "totalDeductions": {
+                        "type": "number"
+                    },
+                    "totalNetCommission": {
+                        "type": "number"
+                    },
+                    "paymentStatus": {
+                        "type": "string",
+                        "enum": [
+                            "PAID",
+                            "PENDING"
+                        ]
+                    },
+                    "paidOn": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "JwtRequest": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "password": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "required": [
+                    "password",
+                    "username"
+                ]
+            },
+            "JwtResponse": {
+                "type": "object",
+                "description": "JWT Authentication Response containing user details and token.",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "description": "Username of the authenticated user.",
+                        "example": "johndoe"
+                    },
+                    "fullname": {
+                        "type": "string",
+                        "description": "Full name of the authenticated user.",
+                        "example": "John Doe"
+                    },
+                    "token": {
+                        "type": "string",
+                        "description": "JWT token for authentication.",
+                        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    },
+                    "roles": {
+                        "type": "array",
+                        "description": "Roles assigned to the authenticated user.",
+                        "example": [
+                            "ROLE_USER",
+                            "ROLE_ADMIN"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "CommissionDetail": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "agentId": {
+                        "type": "string"
+                    },
+                    "agentType": {
+                        "type": "string",
+                        "enum": [
+                            "INDIVIDUAL",
+                            "BROKER"
+                        ]
+                    },
+                    "policyDetail": {
+                        "$ref": "#/components/schemas/PolicyDetail"
+                    },
+                    "premiumAmount": {
+                        "type": "number"
+                    },
+                    "commissionEarned": {
+                        "type": "number"
+                    },
+                    "tax": {
+                        "type": "number"
+                    },
+                    "netCommission": {
+                        "type": "number"
+                    },
+                    "receiptDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "paid": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "PolicyDetail": {
+                "type": "object",
+                "properties": {
+                    "policyNumber": {
+                        "type": "string"
+                    },
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Audit": {
+                "type": "object",
+                "properties": {
+                    "createdOn": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedOn": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdBy": {
+                        "type": "string"
+                    },
+                    "updatedBy": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CommissionHistoryDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "agentId": {
+                        "type": "string"
+                    },
+                    "policyDetail": {
+                        "$ref": "#/components/schemas/PolicyDetail"
+                    },
+                    "premiumId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "headerId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "premiumAmount": {
+                        "type": "number"
+                    },
+                    "commissionEarned": {
+                        "type": "number"
+                    },
+                    "tax": {
+                        "type": "number"
+                    },
+                    "netCommission": {
+                        "type": "number"
+                    },
+                    "audit": {
+                        "$ref": "#/components/schemas/Audit"
+                    }
+                }
+            },
+            "DeductionHistoryDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "deduction": {
+                        "$ref": "#/components/schemas/EntityRefLong",
+                        "description": "Deduction reference"
+                    },
+                    "agentId": {
+                        "type": "string",
+                        "description": "Reference to the agent",
+                        "example": "AG12345"
+                    },
+                    "period": {
+                        "type": "string",
+                        "description": "Commission period",
+                        "example": "2024-01"
+                    },
+                    "amount": {
+                        "type": "number",
+                        "description": "Amount deducted",
+                        "example": 150.75
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Status of the deduction",
+                        "enum": [
+                            "PAID",
+                            "PENDING"
+                        ],
+                        "example": "PAID"
+                    }
+                }
+            },
+            "EntityRefLong": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "AgentDetail": {
+                "type": "object",
+                "description": "Represents the details of an agent including personal information, bank details, phone details, and status.",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Unique identifier for the agent",
+                        "example": "AGT12345"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The full name of the agent",
+                        "example": "John Mensah"
+                    },
+                    "agentType": {
+                        "type": "string",
+                        "description": "The type of agent, BROKER,INDIVIDUAL",
+                        "enum": [
+                            "INDIVIDUAL",
+                            "BROKER"
+                        ]
+                    },
+                    "bankDetail": {
+                        "$ref": "#/components/schemas/BankDetail",
+                        "description": "The bank details associated with the agent"
+                    },
+                    "phoneDetail": {
+                        "$ref": "#/components/schemas/PhoneDetail",
+                        "description": "The phone details associated with the agent"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The current status of the agent (ACTIVE, INACTIVE)",
+                        "enum": [
+                            "ACTIVE",
+                            "INACTIVE"
+                        ]
+                    },
+                    "paymentMethod": {
+                        "type": "string",
+                        "description": "The payment method preferred by the agent,(BANK,MOBILE_MONEY)",
+                        "enum": [
+                            "BANK",
+                            "MOBILE_MONEY"
+                        ]
+                    }
+                }
+            },
+            "BankDetail": {
+                "type": "object",
+                "properties": {
+                    "bankName": {
+                        "type": "string"
+                    },
+                    "accountNumber": {
+                        "type": "string"
+                    },
+                    "branchCode": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PhoneDetail": {
+                "type": "object",
+                "properties": {
+                    "phoneNumber": {
+                        "type": "string"
+                    },
+                    "network": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CompleteResponseVoid": {
+                "type": "object",
+                "properties": {
+                    "completed": {
+                        "type": "boolean"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object"
+                    }
+                }
+            }
+        }
+    }
+}
